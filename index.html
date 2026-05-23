@@ -507,12 +507,12 @@
   <div class="section">
     <div class="section-label">01 — Scenario</div>
     <h2>A Bank That Won't Die</h2>
-    <p>It's 2 AM. Your SOC alert fires. A phishing campaign is targeting your customers — a near-perfect clone of your bank's login page. Your security team traces the domain, blocks the IP, and breathes easy.</p>
-    <p>By 2:05 AM, the site is back up. Different IP. Same domain. You block again. It's back in three minutes. By morning, you've blocked 47 IPs across 19 countries — and the phishing page is still live.</p>
+    <p>It's 2 AM. Your SOC alert fires. A phishing campaign is targeting your customers with a near-perfect clone of your bank's login page. Your security team traces the domain, blocks the IP, and breathes easy.</p>
+    <p>By 2:05 AM, the site is back up. Different IP. Same domain. You block again. It's back in three minutes. By morning, you've blocked 47 IPs across 19 countries and the phishing page is still live.</p>
   </div>
 
   <div class="scenario-box">
-    <p>You're not playing whack-a-mole with servers. You're fighting Fast-Flux — an attacker technique that makes a malicious domain as resilient as a hydra.</p>
+    <p>You're not playing whack-a-mole with servers. You're fighting Fast-Flux which is an attacker technique that makes a malicious domain as resilient as a hydra.</p>
     <div class="scenario-note">&#128073; This exact scenario played out in attacks against major European banks and e-commerce platforms in 2023–2024.</div>
   </div>
 
@@ -522,7 +522,7 @@
   <div class="section">
     <div class="section-label">02 — Concept</div>
     <h2>What is Fast-Flux?</h2>
-    <p>Fast-Flux is a DNS evasion technique where a single malicious domain rapidly cycles through a large pool of IP addresses — sometimes dozens per minute — using extremely low TTL (Time-To-Live) values.</p>
+    <p>Fast-Flux is a DNS evasion technique where a single malicious domain rapidly cycles through a large pool of IP addresses, sometimes dozens per minute using extremely low TTL (Time-To-Live) values.</p>
     <p>Think of it as DNS-as-a-service for cybercriminals. Instead of mapping one domain to one server, Fast-Flux maps it to a constantly rotating swarm of compromised machines (bots) that relay traffic to the real hidden backend.</p>
     <p>The result: by the time a defender identifies and blocks an IP, it's already been replaced. Traditional IP-based blocklisting becomes almost useless.</p>
   </div>
@@ -533,7 +533,7 @@
   <div class="section">
     <div class="section-label">03 — Mechanics</div>
     <h2>How Fast-Flux Works</h2>
-    <p>Here's the anatomy of a Fast-Flux network — a layered architecture designed to obscure the true backend from investigators:</p>
+    <p>Here's the anatomy of a Fast-Flux network which is a layered architecture designed to obscure the true backend from investigators:</p>
   </div>
 
   <div class="dns-visual">
@@ -543,7 +543,7 @@
     <div class="dns-row">
       <div class="dns-node gray">Victim browser</div>
       <div class="dns-arrow">&#8594;</div>
-      <div class="dns-node red">evil-bank.com<br><small style="opacity:0.8;font-size:10px">TTL: 60s</small></div>
+      <div class="dns-node red">http//[.]bankdomain.com<br><small style="opacity:0.8;font-size:10px">TTL: 60s</small></div>
       <div class="dns-arrow">&#8594;</div>
       <div class="dns-node">DNS resolver<br><small style="opacity:0.8;font-size:10px">Returns rotating IP</small></div>
     </div>
@@ -568,7 +568,7 @@
   </div>
 
   <div class="section" style="padding-top:24px">
-    <p>The key parameters that make this work: TTL values as low as 60–300 seconds (vs. typical 24–48 hours), a large pool of 50–500+ rotating IPs, and bots spanning multiple countries and ISPs to frustrate geoblocking.</p>
+    <p>The key parameters that make this work: Time-To-Live [TTL] values as low as 60–300 seconds (vs. typical 24–48 hours), a large pool of 50–500+ rotating IPs, and bots spanning multiple countries and ISPs to frustrate geoblocking.</p>
   </div>
 
   <hr class="divider">
@@ -604,7 +604,7 @@
   </div>
 
   <div class="section" style="padding-top:20px">
-    <p>Double-Flux is the advanced variant — even attacking the registrar or nameserver level fails because those too are rotating proxies backed by a botnet.</p>
+    <p>Double-Flux is the advanced variant and even attacking the registrar or nameserver level fails because those too are rotating proxies backed by a botnet.</p>
   </div>
 
   <hr class="divider">
@@ -613,7 +613,7 @@
   <div class="section">
     <div class="section-label">05 — Real-World Cases</div>
     <h2>How Attackers Actually Use It</h2>
-    <p>Fast-Flux isn't theoretical — it's been the backbone of major criminal operations for years:</p>
+    <p>Fast-Flux isn't theoretical & it's been the backbone of major criminal operations for years:</p>
   </div>
 
   <div class="usecase-list">
@@ -642,7 +642,7 @@
       <div class="usecase-icon">&#128274;</div>
       <div class="usecase-content">
         <h4>Bulletproof Hosting</h4>
-        <p>Criminal marketplaces selling drugs, stolen credentials, and exploit kits use Fast-Flux as a service — effectively renting resilient, hard-to-block hosting to other threat actors.</p>
+        <p>Criminal marketplaces selling drugs, stolen credentials, and exploit kits use Fast-Flux as a service effectively renting resilient, hard-to-block hosting to other threat actors.</p>
       </div>
     </div>
   </div>
@@ -679,7 +679,7 @@
     </div>
     <div class="indicator">
       <h4>NS record rotation (Double-Flux)</h4>
-      <p>Nameserver records also changing — a near-certain indicator of Double-Flux infrastructure.</p>
+      <p>Nameserver records also changing a near-certain indicator of Double-Flux infrastructure.</p>
     </div>
   </div>
 
@@ -697,7 +697,7 @@
       <div class="defense-num">01</div>
       <div class="defense-text">
         <h4>DNS-based blocking & RPZ</h4>
-        <p>Use Response Policy Zones (RPZ) to block domains — not just IPs. Even if IPs rotate, the domain stays blocked. DNSBL feeds specialized in Fast-Flux detection (e.g., Spamhaus DBL) provide actionable domain blocklists.</p>
+        <p>Use Response Policy Zones (RPZ) to block domains and not just IPs. Even if IPs rotate, the domain stays blocked. DNSBL feeds specialized in Fast-Flux detection (e.g., Spamhaus DBL) provide actionable domain blocklists.</p>
       </div>
     </div>
     <div class="defense-item">
@@ -718,7 +718,7 @@
       <div class="defense-num">04</div>
       <div class="defense-text">
         <h4>Registrar-level takedowns</h4>
-        <p>Coordinate with domain registrars and ICANN to suspend malicious domains. While slower, this removes the entire flux network's anchor — no domain, no flux. CISA and Europol have successful precedents.</p>
+        <p>Coordinate with domain registrars and ICANN to suspend malicious domains. While slower, this removes the entire flux network's anchor no domain, no flux. CISA and Europol have successful precedents.</p>
       </div>
     </div>
     <div class="defense-item">
@@ -760,7 +760,7 @@
           <td><span class="mitre-id">T1568.001</span></td>
           <td>Fast Flux DNS</td>
           <td>Command & Control</td>
-          <td>Direct sub-technique — the core technique</td>
+          <td>Direct sub-technique wiz the core technique</td>
         </tr>
         <tr>
           <td><span class="mitre-id">T1583.001</span></td>
@@ -794,8 +794,8 @@
   <div class="conclusion">
     <div class="section-label" style="color:rgba(255,255,255,0.5)">09 — Conclusion</div>
     <h2>The Takeaway</h2>
-    <p>Fast-Flux is a reminder that attackers optimize for resilience — and defenders must match that mindset. A technique that's been around since the early 2000s is still actively evading takedowns in 2025 because it exploits a fundamental property of how DNS works.</p>
-    <p>The defenders who win aren't the ones who block the most IPs. They're the ones who monitor DNS behavior, integrate threat intelligence, and pursue domain-level action. Fast-Flux is hard to kill, but it's not invisible — it leaves traces, and those traces are your edge.</p>
+    <p>Fast-Flux is a reminder that attackers optimize for resilience and defenders must match that mindset. A technique that's been around since the early 2000s is still actively evading takedowns in 2025 because it exploits a fundamental property of how DNS works.</p>
+    <p>The defenders who win aren't the ones who block the most IPs. They're the ones who monitor DNS behavior, integrate threat intelligence, and pursue domain-level action. Fast-Flux is hard to kill, but it's not invisible it leaves traces, and those traces are your edge.</p>
   </div>
 
   <!-- AUTHOR BAR -->
