@@ -1,0 +1,820 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
+
+  :root {
+    --ink: #0d0e14;
+    --ink2: #3a3d4d;
+    --ink3: #6b6f82;
+    --paper: #f4f2ed;
+    --accent: #d63a2f;
+    --accent2: #1a3a6b;
+    --tag-bg: #e8e5de;
+    --card: #ffffff;
+    --border: rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.75;
+  }
+
+  .blog-root {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 0 80px;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--accent2);
+    color: #fff;
+    padding: 56px 40px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    border: 60px solid rgba(255,255,255,0.05);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 40px solid rgba(255,255,255,0.04);
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(30px, 5vw, 46px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.7);
+    max-width: 560px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-meta {
+    margin-top: 28px;
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    position: relative;
+    z-index: 1;
+  }
+  .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* TOC */
+  .toc {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-left: 3px solid var(--accent);
+    margin: 32px 40px;
+    padding: 24px 28px;
+  }
+  .toc-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .toc ol {
+    padding-left: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 24px;
+  }
+  .toc li {
+    font-size: 13.5px;
+    color: var(--ink2);
+    padding: 2px 0;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 40px 40px 0;
+  }
+
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+
+  p {
+    font-size: 16px;
+    color: var(--ink2);
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+
+  .divider {
+    border: none;
+    border-top: 0.5px solid var(--border);
+    margin: 40px 40px 0;
+  }
+
+  /* SCENARIO CARD */
+  .scenario-box {
+    background: #0d0e14;
+    color: #fff;
+    padding: 28px 32px;
+    margin: 24px 40px 0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scenario-box::before {
+    content: '"';
+    position: absolute;
+    top: -10px; left: 20px;
+    font-size: 120px;
+    color: rgba(214,58,47,0.2);
+    font-family: 'Syne', sans-serif;
+    line-height: 1;
+  }
+  .scenario-box p {
+    color: rgba(255,255,255,0.85);
+    font-size: 15.5px;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0;
+  }
+  .scenario-box .scenario-note {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* DNS VISUAL */
+  .dns-visual {
+    margin: 28px 40px 0;
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    padding: 28px;
+    border-radius: 4px;
+  }
+  .dns-visual-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .dns-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .dns-node {
+    background: var(--accent2);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 3px;
+    text-align: center;
+    min-width: 80px;
+  }
+  .dns-node.red { background: var(--accent); }
+  .dns-node.gray { background: var(--tag-bg); color: var(--ink2); }
+  .dns-node.green { background: #1a6b3a; }
+  .dns-arrow {
+    font-size: 18px;
+    color: var(--ink3);
+    font-weight: 300;
+  }
+  .dns-label {
+    font-size: 11px;
+    color: var(--ink3);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  /* FLUX COMPARISON */
+  .flux-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 40px 0;
+  }
+  .flux-card {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    padding: 24px;
+    border-radius: 4px;
+  }
+  .flux-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .flux-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .flux-badge.danger { background: #fde8e6; color: #a32d2d; }
+  .flux-badge.critical { background: #0d0e14; color: #fff; }
+  .flux-card p { font-size: 14px; margin-bottom: 10px; }
+  .flux-card ul { padding-left: 18px; }
+  .flux-card li { font-size: 14px; color: var(--ink2); margin-bottom: 6px; }
+
+  /* USE CASES */
+  .usecase-list {
+    margin: 20px 40px 0;
+    display: grid;
+    gap: 12px;
+  }
+  .usecase-item {
+    display: flex;
+    gap: 16px;
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    padding: 18px 20px;
+    border-radius: 4px;
+    align-items: flex-start;
+  }
+  .usecase-icon {
+    font-size: 22px;
+    width: 36px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .usecase-content h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .usecase-content p { font-size: 14px; margin-bottom: 0; color: var(--ink2); }
+
+  /* INDICATORS */
+  .indicators {
+    margin: 20px 40px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .indicator {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 14px 16px;
+  }
+  .indicator h4 {
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Syne', sans-serif;
+    margin-bottom: 4px;
+  }
+  .indicator p { font-size: 13px; color: var(--ink3); margin: 0; }
+
+  /* DEFENSE */
+  .defense-list {
+    margin: 20px 40px 0;
+    counter-reset: def;
+  }
+  .defense-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+  .defense-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--border);
+    min-width: 36px;
+    line-height: 1;
+    padding-top: 2px;
+  }
+  .defense-text h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .defense-text p { font-size: 14.5px; color: var(--ink2); margin: 0; }
+
+  /* MITRE TABLE */
+  .mitre-table {
+    margin: 20px 40px 0;
+    border: 0.5px solid var(--border);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .mitre-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  .mitre-table th {
+    background: var(--accent2);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+  }
+  .mitre-table td {
+    padding: 12px 16px;
+    border-bottom: 0.5px solid var(--border);
+    color: var(--ink2);
+    vertical-align: top;
+  }
+  .mitre-table tr:last-child td { border-bottom: none; }
+  .mitre-table tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+  .mitre-id {
+    font-family: monospace;
+    font-size: 12px;
+    background: var(--tag-bg);
+    color: var(--accent2);
+    padding: 2px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  /* CONCLUSION */
+  .conclusion {
+    background: var(--accent2);
+    color: #fff;
+    margin: 40px 40px 0;
+    padding: 36px 36px;
+    border-radius: 4px;
+  }
+  .conclusion h2 { color: #fff; font-size: 22px; }
+  .conclusion p { color: rgba(255,255,255,0.75); }
+
+  /* AUTHOR */
+  .author-bar {
+    margin: 32px 40px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+  }
+  .author-avatar {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: var(--accent2);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .author-info { flex: 1; }
+  .author-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .author-desc { font-size: 13px; color: var(--ink3); margin-bottom: 10px; }
+  .author-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .author-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.04em;
+    transition: opacity 0.15s;
+  }
+  .author-link:hover { opacity: 0.82; }
+  .author-link.linkedin {
+    background: #0a66c2;
+    color: #fff;
+  }
+  .author-link.gmail {
+    background: var(--tag-bg);
+    color: var(--ink2);
+    border: 0.5px solid var(--border);
+  }
+</style>
+
+<div class="blog-root">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">Cybersecurity Deep Dive</div>
+    <h1>Fast-Flux: The DNS Trick<br>Keeping Cybercriminals Hidden</h1>
+    <p class="hero-sub">How attackers weaponize DNS rotation to make malicious infrastructure nearly impossible to take down — and what defenders can do about it.</p>
+    <div class="hero-meta">
+      <span>&#128197; May 2025</span>
+      <span>&#9201; 8 min read</span>
+      <span>&#127988; Sahil Vakkani [Senior Security Researcher]</span>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li>Scenario / Incident</li>
+      <li>What is Fast-Flux?</li>
+      <li>How Fast-Flux Works</li>
+      <li>Single vs Double Flux</li>
+      <li>Real-World Use Cases</li>
+      <li>Detection Indicators</li>
+      <li>Defense Strategies</li>
+      <li>MITRE ATT&CK Mapping</li>
+      <li>Conclusion</li>
+    </ol>
+  </div>
+
+  <!-- 1. SCENARIO -->
+  <div class="section">
+    <div class="section-label">01 — Scenario</div>
+    <h2>A Bank That Won't Die</h2>
+    <p>It's 2 AM. Your SOC alert fires. A phishing campaign is targeting your customers — a near-perfect clone of your bank's login page. Your security team traces the domain, blocks the IP, and breathes easy.</p>
+    <p>By 2:05 AM, the site is back up. Different IP. Same domain. You block again. It's back in three minutes. By morning, you've blocked 47 IPs across 19 countries — and the phishing page is still live.</p>
+  </div>
+
+  <div class="scenario-box">
+    <p>You're not playing whack-a-mole with servers. You're fighting Fast-Flux — an attacker technique that makes a malicious domain as resilient as a hydra.</p>
+    <div class="scenario-note">&#128073; This exact scenario played out in attacks against major European banks and e-commerce platforms in 2023–2024.</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 2. WHAT IS FAST FLUX -->
+  <div class="section">
+    <div class="section-label">02 — Concept</div>
+    <h2>What is Fast-Flux?</h2>
+    <p>Fast-Flux is a DNS evasion technique where a single malicious domain rapidly cycles through a large pool of IP addresses — sometimes dozens per minute — using extremely low TTL (Time-To-Live) values.</p>
+    <p>Think of it as DNS-as-a-service for cybercriminals. Instead of mapping one domain to one server, Fast-Flux maps it to a constantly rotating swarm of compromised machines (bots) that relay traffic to the real hidden backend.</p>
+    <p>The result: by the time a defender identifies and blocks an IP, it's already been replaced. Traditional IP-based blocklisting becomes almost useless.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 3. HOW IT WORKS -->
+  <div class="section">
+    <div class="section-label">03 — Mechanics</div>
+    <h2>How Fast-Flux Works</h2>
+    <p>Here's the anatomy of a Fast-Flux network — a layered architecture designed to obscure the true backend from investigators:</p>
+  </div>
+
+  <div class="dns-visual">
+    <div class="dns-visual-title">Fast-Flux Network Architecture</div>
+
+    <div class="dns-label">Step 1 — Victim resolves the domain</div>
+    <div class="dns-row">
+      <div class="dns-node gray">Victim browser</div>
+      <div class="dns-arrow">&#8594;</div>
+      <div class="dns-node red">evil-bank.com<br><small style="opacity:0.8;font-size:10px">TTL: 60s</small></div>
+      <div class="dns-arrow">&#8594;</div>
+      <div class="dns-node">DNS resolver<br><small style="opacity:0.8;font-size:10px">Returns rotating IP</small></div>
+    </div>
+
+    <div class="dns-label" style="margin-top:12px">Step 2 — Request hits a flux agent (compromised host)</div>
+    <div class="dns-row">
+      <div class="dns-node gray">Victim</div>
+      <div class="dns-arrow">&#8594;</div>
+      <div class="dns-node red">Bot 1<br><small style="opacity:0.8;font-size:10px">203.0.113.5</small></div>
+      <div class="dns-arrow" style="opacity:0.4">|</div>
+      <div class="dns-node red">Bot 2<br><small style="opacity:0.8;font-size:10px">198.51.100.2</small></div>
+      <div class="dns-arrow" style="opacity:0.4">|</div>
+      <div class="dns-node red">Bot N<br><small style="opacity:0.8;font-size:10px">Rotating...</small></div>
+    </div>
+
+    <div class="dns-label" style="margin-top:12px">Step 3 — Bot proxies to the hidden mothership</div>
+    <div class="dns-row">
+      <div class="dns-node red">Flux agent</div>
+      <div class="dns-arrow">&#8594;</div>
+      <div class="dns-node green">&#128274; Hidden C2<br><small style="opacity:0.8;font-size:10px">Never exposed directly</small></div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:24px">
+    <p>The key parameters that make this work: TTL values as low as 60–300 seconds (vs. typical 24–48 hours), a large pool of 50–500+ rotating IPs, and bots spanning multiple countries and ISPs to frustrate geoblocking.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 4. SINGLE vs DOUBLE -->
+  <div class="section">
+    <div class="section-label">04 — Variants</div>
+    <h2>Single-Flux vs Double-Flux</h2>
+    <p>There are two main flavors of Fast-Flux, each more resilient than the last:</p>
+  </div>
+
+  <div class="flux-grid">
+    <div class="flux-card">
+      <h3>Single-Flux <span class="flux-badge danger">Dangerous</span></h3>
+      <p>Only the <strong>A records</strong> (IP addresses) rotate. The nameservers (NS records) stay fixed.</p>
+      <ul>
+        <li>IPs change every 60–300 seconds</li>
+        <li>50–200+ IPs in the pool</li>
+        <li>Nameserver is a known, stable target</li>
+        <li>Can be disrupted by taking down the NS</li>
+      </ul>
+    </div>
+    <div class="flux-card">
+      <h3>Double-Flux <span class="flux-badge critical">Critical</span></h3>
+      <p>Both the <strong>A records AND NS records</strong> rotate simultaneously.</p>
+      <ul>
+        <li>IPs change constantly</li>
+        <li>Nameservers also rotate through bots</li>
+        <li>No stable infrastructure to target</li>
+        <li>Significantly harder to take down</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:20px">
+    <p>Double-Flux is the advanced variant — even attacking the registrar or nameserver level fails because those too are rotating proxies backed by a botnet.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 5. REAL WORLD -->
+  <div class="section">
+    <div class="section-label">05 — Real-World Cases</div>
+    <h2>How Attackers Actually Use It</h2>
+    <p>Fast-Flux isn't theoretical — it's been the backbone of major criminal operations for years:</p>
+  </div>
+
+  <div class="usecase-list">
+    <div class="usecase-item">
+      <div class="usecase-icon">&#127394;</div>
+      <div class="usecase-content">
+        <h4>Storm Botnet (2007–2008)</h4>
+        <p>One of the earliest large-scale deployments of Fast-Flux. The Storm worm used it to keep its C2 infrastructure alive across millions of infected machines, resisting takedown attempts by security researchers for over a year.</p>
+      </div>
+    </div>
+    <div class="usecase-item">
+      <div class="usecase-icon">&#128247;</div>
+      <div class="usecase-content">
+        <h4>Phishing Campaigns</h4>
+        <p>Nation-state actors and cybercrime groups use Fast-Flux to host phishing pages targeting banks, healthcare portals, and government services. By the time a takedown is initiated, the site has already changed dozens of IPs.</p>
+      </div>
+    </div>
+    <div class="usecase-item">
+      <div class="usecase-icon">&#128187;</div>
+      <div class="usecase-content">
+        <h4>Malware C2 Infrastructure</h4>
+        <p>Ransomware families like Emotet and TrickBot relied on Fast-Flux for command-and-control communications. Even when individual bot nodes were seized, the C2 domain kept resolving through the remaining pool.</p>
+      </div>
+    </div>
+    <div class="usecase-item">
+      <div class="usecase-icon">&#128274;</div>
+      <div class="usecase-content">
+        <h4>Bulletproof Hosting</h4>
+        <p>Criminal marketplaces selling drugs, stolen credentials, and exploit kits use Fast-Flux as a service — effectively renting resilient, hard-to-block hosting to other threat actors.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 6. DETECTION -->
+  <div class="section">
+    <div class="section-label">06 — Detection</div>
+    <h2>Detection Indicators</h2>
+    <p>Fast-Flux leaves fingerprints in DNS telemetry. These are the signals threat hunters look for:</p>
+  </div>
+
+  <div class="indicators">
+    <div class="indicator">
+      <h4>Very low TTL values</h4>
+      <p>TTL below 300s (5 minutes) for A records — especially combined with high query frequency.</p>
+    </div>
+    <div class="indicator">
+      <h4>High A-record count</h4>
+      <p>A single domain returning 10–50+ different IP addresses in a short time window.</p>
+    </div>
+    <div class="indicator">
+      <h4>High IP churn rate</h4>
+      <p>IPs associated with a domain changing rapidly. Calculate: unique IPs ÷ observation window.</p>
+    </div>
+    <div class="indicator">
+      <h4>Geographic IP scatter</h4>
+      <p>IPs spanning many countries, ASNs, and ISPs — typical of a botnet, not a CDN.</p>
+    </div>
+    <div class="indicator">
+      <h4>PTR/A record mismatch</h4>
+      <p>Reverse DNS (PTR) doesn't match the queried A record — residential or compromised IPs.</p>
+    </div>
+    <div class="indicator">
+      <h4>NS record rotation (Double-Flux)</h4>
+      <p>Nameserver records also changing — a near-certain indicator of Double-Flux infrastructure.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 7. DEFENSE -->
+  <div class="section">
+    <div class="section-label">07 — Defense</div>
+    <h2>Defense Strategies</h2>
+    <p>IP blocklisting alone won't cut it. Effective defense requires layered controls targeting the domain and DNS behavior itself:</p>
+  </div>
+
+  <div class="defense-list">
+    <div class="defense-item">
+      <div class="defense-num">01</div>
+      <div class="defense-text">
+        <h4>DNS-based blocking & RPZ</h4>
+        <p>Use Response Policy Zones (RPZ) to block domains — not just IPs. Even if IPs rotate, the domain stays blocked. DNSBL feeds specialized in Fast-Flux detection (e.g., Spamhaus DBL) provide actionable domain blocklists.</p>
+      </div>
+    </div>
+    <div class="defense-item">
+      <div class="defense-num">02</div>
+      <div class="defense-text">
+        <h4>DNS traffic monitoring & analytics</h4>
+        <p>Implement DNS logging and analyze query patterns. Flag domains with TTL &lt; 300s, high IP churn, or large A-record sets. Tools like Zeek, PassiveDNS, and commercial TIP platforms automate this.</p>
+      </div>
+    </div>
+    <div class="defense-item">
+      <div class="defense-num">03</div>
+      <div class="defense-text">
+        <h4>Threat intelligence integration</h4>
+        <p>Subscribe to feeds that specifically track Fast-Flux infrastructure. Sharing indicators through ISACs (Information Sharing and Analysis Centers) accelerates collective defense across sectors.</p>
+      </div>
+    </div>
+    <div class="defense-item">
+      <div class="defense-num">04</div>
+      <div class="defense-text">
+        <h4>Registrar-level takedowns</h4>
+        <p>Coordinate with domain registrars and ICANN to suspend malicious domains. While slower, this removes the entire flux network's anchor — no domain, no flux. CISA and Europol have successful precedents.</p>
+      </div>
+    </div>
+    <div class="defense-item">
+      <div class="defense-num">05</div>
+      <div class="defense-text">
+        <h4>Machine learning for flux detection</h4>
+        <p>Train classifiers on DNS behavioral features: TTL distribution, IP diversity index, ASN entropy, query rate. Models trained on passive DNS data have shown 90%+ accuracy in Fast-Flux identification.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 8. MITRE -->
+  <div class="section">
+    <div class="section-label">08 — MITRE ATT&CK</div>
+    <h2>MITRE ATT&CK Mapping</h2>
+    <p>Fast-Flux maps to several techniques in the MITRE ATT&CK framework, particularly under Command and Control and Resource Development:</p>
+  </div>
+
+  <div class="mitre-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Technique ID</th>
+          <th>Technique</th>
+          <th>Tactic</th>
+          <th>Relevance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="mitre-id">T1568</span></td>
+          <td>Dynamic Resolution</td>
+          <td>Command & Control</td>
+          <td>Parent technique for Fast-Flux behavior</td>
+        </tr>
+        <tr>
+          <td><span class="mitre-id">T1568.001</span></td>
+          <td>Fast Flux DNS</td>
+          <td>Command & Control</td>
+          <td>Direct sub-technique — the core technique</td>
+        </tr>
+        <tr>
+          <td><span class="mitre-id">T1583.001</span></td>
+          <td>Acquire Domains</td>
+          <td>Resource Development</td>
+          <td>Attackers register flux domains in bulk</td>
+        </tr>
+        <tr>
+          <td><span class="mitre-id">T1584.005</span></td>
+          <td>Botnet</td>
+          <td>Resource Development</td>
+          <td>Compromised machines form the flux node pool</td>
+        </tr>
+        <tr>
+          <td><span class="mitre-id">T1090</span></td>
+          <td>Proxy</td>
+          <td>Command & Control</td>
+          <td>Flux agents act as proxies to the real backend</td>
+        </tr>
+        <tr>
+          <td><span class="mitre-id">T1071.004</span></td>
+          <td>DNS Application Layer Protocol</td>
+          <td>Command & Control</td>
+          <td>C2 communication routed through DNS queries</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 9. CONCLUSION -->
+  <div class="conclusion">
+    <div class="section-label" style="color:rgba(255,255,255,0.5)">09 — Conclusion</div>
+    <h2>The Takeaway</h2>
+    <p>Fast-Flux is a reminder that attackers optimize for resilience — and defenders must match that mindset. A technique that's been around since the early 2000s is still actively evading takedowns in 2025 because it exploits a fundamental property of how DNS works.</p>
+    <p>The defenders who win aren't the ones who block the most IPs. They're the ones who monitor DNS behavior, integrate threat intelligence, and pursue domain-level action. Fast-Flux is hard to kill, but it's not invisible — it leaves traces, and those traces are your edge.</p>
+  </div>
+
+  <!-- AUTHOR BAR -->
+  <div class="author-bar">
+    <div class="author-avatar">SV</div>
+    <div class="author-info">
+      <div class="author-name">Sahil Vakkani - Senior Security Researcher @LTM</div>
+      <div class="author-desc">Writing about threat intelligence, DNS security &amp; attacker tradecraft. Open to SOC Analyst, Threat Intelligence &amp; Threat Hunter roles</div>
+      <div class="author-links">
+        <a class="author-link linkedin" href="https://www.linkedin.com/in/sahil-vakkani/" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a class="author-link gmail" href="mailto:sgvakkani1130@gmail.com">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          sgvakkani1130@gmail.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
